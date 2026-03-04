@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>超级密码机 - 颜色破解</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="machine" id="machine">
+      <header class="machine-top">
+        <p class="eyebrow">SUPER COLOR CODE</p>
+        <h1>计客风格颜色密码机</h1>
+        <p class="goal">游戏目标：<strong>7 步内破解 4 色密码</strong></p>
+      </header>
+
+      <section class="screen">
+        <div class="screen-head">
+          <p>关卡 <span id="levelValue">1</span></p>
+          <p>剩余步数 <span id="remainingValue">7</span></p>
+        </div>
+
+        <div class="color-row drop-row" id="guessRow" aria-label="当前猜测色块"></div>
+        <div class="underline-row" id="hintRow" aria-label="底部下划线提示"></div>
+        <div class="palette" id="palette" aria-label="可拖动颜色托盘"></div>
+
+        <p class="tip">
+          提示规则：<span class="k-green">绿色</span> = 颜色和位置正确，
+          <span class="k-white">白色</span> = 颜色正确但位置错误。
+        </p>
+        <p id="message" class="message">点击“开始游戏”生成随机颜色。</p>
+      </section>
+
+      <section class="controls">
+        <button id="submitBtn" class="btn-orange" type="button">提交本次猜测</button>
+        <button id="clearBtn" class="btn-yellow" type="button">清空填空</button>
+        <button id="newGameBtn" class="btn-plain" type="button">开始游戏</button>
+      </section>
+
+      <section class="history">
+        <h2>猜测记录</h2>
+        <div class="history-list" id="historyList"></div>
+      </section>
+
+      <div class="light-strip" id="lightStrip" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
