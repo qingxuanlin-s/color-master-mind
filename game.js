@@ -34,6 +34,11 @@ const clearBtn = document.querySelector("#clearBtn");
 const newGameBtn = document.querySelector("#newGameBtn");
 const historyListEl = document.querySelector("#historyList");
 
+function toggleGameActionButtons(visible) {
+  submitBtn.classList.toggle("is-hidden", !visible);
+  clearBtn.classList.toggle("is-hidden", !visible);
+}
+
 function setMessage(text, type = "") {
   messageEl.textContent = text;
   messageEl.className = `message ${type}`.trim();
@@ -235,6 +240,7 @@ function startLevel(level) {
   renderPalette();
   renderStatus();
   renderHint();
+  toggleGameActionButtons(true);
   setMessage("拖动颜色到上方空格，或先点颜色再点空格。", "");
 }
 
@@ -314,3 +320,4 @@ newGameBtn.addEventListener("click", startGame);
 renderStatus();
 renderHint();
 renderGuess();
+toggleGameActionButtons(false);
