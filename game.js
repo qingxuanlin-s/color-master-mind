@@ -34,6 +34,10 @@ const clearBtn = document.querySelector("#clearBtn");
 const newGameBtn = document.querySelector("#newGameBtn");
 const historyListEl = document.querySelector("#historyList");
 
+function syncPrimaryButtonText() {
+  newGameBtn.textContent = state.playing ? "重置游戏" : "开始游戏";
+}
+
 function toggleGameActionButtons(visible) {
   submitBtn.classList.toggle("is-hidden", !visible);
   clearBtn.classList.toggle("is-hidden", !visible);
@@ -241,6 +245,7 @@ function startLevel(level) {
   renderStatus();
   renderHint();
   toggleGameActionButtons(true);
+  syncPrimaryButtonText();
   setMessage("拖动颜色到上方空格，或先点颜色再点空格。", "");
 }
 
@@ -287,6 +292,7 @@ function submitGuess() {
 
   if (feedback.exact === CODE_SIZE) {
     state.playing = false;
+    syncPrimaryButtonText();
     setMessage("破解成功，灯效启动，准备进入下一关...", "ok");
     flashVictory();
     setTimeout(() => startLevel(state.level + 1), 1900);
@@ -295,6 +301,7 @@ function submitGuess() {
 
   if (state.attempts >= MAX_STEPS) {
     state.playing = false;
+    syncPrimaryButtonText();
     setMessage("本关失败，请点击“开始游戏”重新挑战。", "warn");
     revealAnswer();
     return;
@@ -321,3 +328,4 @@ renderStatus();
 renderHint();
 renderGuess();
 toggleGameActionButtons(false);
+syncPrimaryButtonText();
